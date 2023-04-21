@@ -9,11 +9,17 @@ use wasm_bindgen::prelude::*;
 static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 #[wasm_bindgen]
-extern {
+extern "C" {
     fn alert(s: &str);
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+    #[wasm_bindgen(js_namespace = console, js_name = log)]
+    fn logi(i: i32);
 }
 
 #[wasm_bindgen]
 pub fn greet() {
     alert("Hello, wasm-sample-program!");
 }
+
+mod fibonacci;
